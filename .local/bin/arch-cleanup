@@ -1,0 +1,45 @@
+#!/bin/bash
+
+[ $EUID -ne 0 ] && exec sudo "$0"
+
+title() {
+    printf "\n$(tput bold)%s $(tput sgr0)\n" "$*"
+}
+
+dependencies=("paccache" "bleachbit" "expac")
+
+for dep in "${dependencies[@]}"; do
+    command -v "$dep" > /dev/null || { echo "command '$dep' not found" ; exit 1 ; }
+done
+
+if [ -n "$(pacman -Qtdq)" ]; then
+    title "Removing orphans..."
+    pacman -Rns --noprogressbar --noconfirm $(pacman -Qtdq)
+else
+    echo "No orphaned packages. "
+fi
+
+title "Cleaning package cache..."
+paccache -rk3 # Keep only 3 versions back
+paccache -ruk0 # Remove all versions of uninstalled programs
+# yay -Sc --aur --noconfirm # Only as user, now yay autocleans
+
+title "Cleaning logs..."
+journalctl -q --rotate --vacuum-time=3d
+
+title "Cleaning cache in home directory..."
+rm -r /home/*/.cache/*
+rm -r /root/.cache/*
+
+title "Running Bleachbit cleaning..."
+bleachbit -c $(bleachbit -l | grep cache) | tail -n 5
+
+title "Explicitly installed packages"
+pacman -Qe | wc -l
+
+title "All packages" 
+pacman -Q | wc -l
+
+title "Largest packages"
+expac -H M '%m\t%n' | sort -h -r | head -n 10
+

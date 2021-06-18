@@ -1,0 +1,11 @@
+#!/bin/bash
+
+[ $EUID -ne 0 ] && exec sudo "$0"
+
+packages="$(comm -23 <(pacman -Qqt | sort) <({ pacman -Qqg base-devel; expac -l '\n' '%E' base; } | sort -u) | fzf \
+	--preview 'pacman -Qil {}' \
+	--reverse \
+    --multi --marker="*" \
+    --header 'Tab to select packages to remove, Enter to accept')"
+
+[ -z $packages ] || pacman -Rns $packages
