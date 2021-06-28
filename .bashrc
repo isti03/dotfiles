@@ -69,7 +69,7 @@ server() {
     python -m http.server ${2:-8080} --directory ${1:-.}
 }
 
-cheat() {
+cheat.sh() {
     curl -s "cheat.sh/${*// /+}" | less -R
 }
 
