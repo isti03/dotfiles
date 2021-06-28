@@ -115,7 +115,7 @@ command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 augroup vimrc
     autocmd!
-    autocmd BufNewFile,BufRead *.{md,txt} setlocal formatoptions=tan1
+    autocmd BufNewFile,BufRead *.{md,txt} setlocal formatoptions=tn1
     autocmd FileType sh compiler shellcheck
     autocmd FileType python compiler pylint
     autocmd BufWritePost *.py make %
