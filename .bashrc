@@ -13,7 +13,7 @@ GIT_PS1_SHOWDIRTYSTATE="true"
 PS1='\n\[$(tput sgr0; tput bold; tput setaf 2)\]\W\[$(tput sgr0; tput dim)\] $(__git_ps1 "(%s)")\$\[$(tput sgr0)\] '
 
 # show user and host if over ssh
-[ -n "$SSH_CONNECTION" ] && PS1="\n\u@\h $PS1"
+[ -n "$SSH_CONNECTION" ] && PS1="\n\u@\h ${PS1:2}"
 
 # shell optimization
 shopt -s dotglob
