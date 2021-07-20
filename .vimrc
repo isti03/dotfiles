@@ -16,7 +16,6 @@ Plug 'jeffkreeftmeijer/vim-dim'
 
 call plug#end()
 
-
 " -------
 " GENERAL
 " -------
@@ -70,7 +69,8 @@ nnoremap X D
 colorscheme dim
 
 " displaying text
-set scrolloff=5 sidescrolloff=10
+set scrolloff=5 
+set sidescroll=1 sidescrolloff=10
 set display=lastline
 
 " completion menu
@@ -118,6 +118,5 @@ augroup vimrc
     autocmd BufNewFile,BufRead *.{md,txt} setlocal formatoptions=tn1
     autocmd FileType sh compiler shellcheck
     autocmd FileType python compiler pylint
-    autocmd BufWritePost *.py make %
     autocmd FileType html,css EmmetInstall
 augroup end
