@@ -73,3 +73,6 @@ cheat.sh() {
     curl -s "cheat.sh/${*// /+}" | less -R
 }
 
+archman() {
+    curl -s -L https://man.archlinux.org/man/${1:?1 parameter required}.raw | man -l -
+}
