@@ -3,9 +3,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-set -o vi
-bind -m vi-insert 'Control-l: clear-screen'
-
 # prompt customization
 source /usr/share/git/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE="true"
@@ -20,8 +17,6 @@ shopt -s dotglob
 shopt -s globstar
 
 set -o noclobber
-
-bind "set completion-ignore-case on" 
 
 # history settings
 shopt -s cmdhist
