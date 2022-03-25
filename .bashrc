@@ -61,7 +61,7 @@ alias yta-best="youtube-dl --extract-audio --audio-format best "
 # Others
 
 server() {
-    python -m http.server ${2:-8080} --directory ${1:-.}
+    python -m http.server "${2:-8080}" --directory "${1:-.}"
 }
 
 cheat.sh() {
