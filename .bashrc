@@ -54,6 +54,9 @@ alias \
 	update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
 	pksyua="yay -Syu --noconfirm"
 
+# help
+alias info="info --vi-keys"
+
 # youtube-dl aliases
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 alias yta-best="youtube-dl --extract-audio --audio-format best "
