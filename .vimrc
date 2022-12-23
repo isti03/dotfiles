@@ -13,7 +13,7 @@ Plug 'mattn/emmet-vim'
 Plug 'ackyshake/VimCompletesMe'
 Plug 'takac/vim-hardtime'
 Plug 'jeffkreeftmeijer/vim-dim'
-
+Plug 'preservim/vim-markdown'
 call plug#end()
 
 " -------
@@ -108,6 +108,12 @@ nnoremap <silent> <leader>l :wincmd l<CR>
 " allow saving of files as sudo when I forgot to start vim using sudo.
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
+" markdown settings
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
+
+set foldlevel=1
 
 " -------------
 " AUTO COMMANDS
@@ -115,7 +121,7 @@ command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 augroup vimrc
     autocmd!
-    autocmd BufNewFile,BufRead *.{md,txt} setlocal formatoptions=tn1
+    autocmd BufNewFile,BufRead *.{md,txt} setlocal formatoptions=trn1
     autocmd FileType sh compiler shellcheck
     autocmd FileType python compiler pylint
     autocmd FileType html,css EmmetInstall
