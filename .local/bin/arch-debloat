@@ -3,7 +3,7 @@
 [ $EUID -ne 0 ] && exec sudo "$0"
 
 # Explicitly installed orphaned packages not in base/base-devel
-candidates="$(comm -23 <(pacman -Qqte | sort) <({ pacman -Qqg base-devel; echo base; } | sort -u) | fzf \
+candidates="$(pacman -Qqte | fzf \
 	--preview 'pacman -Qil {}' \
 	--reverse \
     --multi --marker="*" \
