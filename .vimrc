@@ -38,7 +38,7 @@ set number relativenumber
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 
 " Ensures word-wrap does not split words
-set formatoptions=croq
+set formatoptions=croqj
 set linebreak breakindent
 set textwidth=72
 set colorcolumn=+1
@@ -97,7 +97,7 @@ nnoremap <silent> <leader>s :setlocal spell!<CR>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 
 " nnoremap <silent> <leader>m :make %<CR>
-nnoremap <silent> <leader>m :silent make % <bar> cwindow <bar> cfirst <bar> redraw! <cr>
+nnoremap <silent> <leader>m :silent make <bar> cwindow <bar> redraw! <cr>
 nnoremap <leader>b :ls<cr>:buffer 
 
 nnoremap <silent> <leader>h :wincmd h<CR>
